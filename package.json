@@ -1,0 +1,13 @@
+{
+  "name": "fps-bounty",
+  "description": "FPS Bounty API",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "mongodb": "1.2.x",
+    "marked": "0.2.x",
+    "jade": "0.28.x",
+    "slugs": "0.1.x"
+  }
+}
