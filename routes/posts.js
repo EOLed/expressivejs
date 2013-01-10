@@ -4,11 +4,11 @@ var Server = mongo.Server,
     Bson = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('expressifdb', server, { w: 1});
+db = new Db('expressivedb', server, { w: 1});
 
 db.open(function(err, db) {
   if (!err) {
-    console.log("Connected to 'expressif' database");
+    console.log("Connected to 'expressive' database");
     db.collection('posts', {safe: true}, function(err, collection) {
       if (err) {
         console.log("The 'posts' collection doesn't exist. Initializing collection...");

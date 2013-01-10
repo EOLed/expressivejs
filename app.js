@@ -16,4 +16,4 @@ app.get('/posts/add', posts.add);
 app.post('/posts/add', posts.newPost);
 
 app.listen(3000);
-console.log('expressif listening on port 3000...');
+console.log('expressive listening on port 3000...');
