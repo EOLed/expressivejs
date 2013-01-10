@@ -32,9 +32,8 @@ exports.view = function(req, res) {
   db.collection('posts', function(err, collection) {
     collection.findOne({'slug': req.params.slug, 'created': {'$gte': createDate, '$lte': new Date(year, month - 1, day + 1)}}, function(err, item) {
       console.log('post found: ' + JSON.stringify(item));
-      var params = {post: item, content: marked(item.content)};
-      console.log('view params: ' + JSON.stringify(params));
-      res.render('posts/view', params);
+      item.content = marked(item.content);
+      res.render('posts/view', {post: item});
     });
   });
 };
