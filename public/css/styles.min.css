@@ -12,6 +12,18 @@
 
 body {
   padding-top: 130px;
+  font-size: 13px;
+}
+
+footer {
+  margin-top: 50px;
+  border-top-style: solid;
+  border-top-color: #ddd;
+  border-top-width: 1px;
+  padding-top: 10px;
+  font-size: 11px;
+  color: #ddd;
+  text-align: center;
 }
 
 @media (max-width: 480px) {
@@ -31,3 +43,4 @@ body {
     padding-top: 0;
   }
 }
+
