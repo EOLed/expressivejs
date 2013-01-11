@@ -26,6 +26,10 @@ footer {
   text-align: center;
 }
 
+.post-date {
+  font-size: 11px;
+}
+
 @media (max-width: 480px) {
   body {
     padding-top: 0;

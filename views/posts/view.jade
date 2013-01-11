@@ -1,9 +1,10 @@
 extends ../layout
 
 block content
-  .container
+  .container.post
     .row
-      .span12
-        h1 #{post.title}
-        .content
+      .span7
+        h1.post-title #{post.title}
+        .post-content
+          p.post-date #{fromNow(post.created)}
           !{post.content}
