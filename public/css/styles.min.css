@@ -7,7 +7,7 @@
 #navbar .navbar-inner {
   padding: 30px;
   background: rgb(250, 250, 250); /* Fall-back for browsers that don't support rgba */
-  background: rgba(250, 250, 250, .9);
+  background: rgba(255, 255, 255, .95);
 }
 
 body {
