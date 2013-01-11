@@ -1,4 +1,4 @@
-var mongo = require('mongodb'), slugs = require('slugs'), marked = require('marked');
+var mongo = require('mongodb'), slugs = require('slugs');
 var Server = mongo.Server,
     Db = mongo.Db,
     Bson = mongo.BSONPure;
@@ -32,7 +32,6 @@ exports.view = function(req, res) {
   db.collection('posts', function(err, collection) {
     collection.findOne({'slug': req.params.slug, 'created': {'$gte': createDate, '$lte': new Date(year, month - 1, day + 1)}}, function(err, item) {
       console.log('post found: ' + JSON.stringify(item));
-      item.content = marked(item.content);
       res.render('posts/view', {post: item});
     });
   });

@@ -5,6 +5,5 @@ block content
     .row
       .span7
         h1.post-title #{post.title}
-        .post-content
-          p.post-date #{fromNow(post.created)}
-          !{post.content}
+        .post-meta #{fromNow(post.created)}
+        .post-content !{marked(post.content)}

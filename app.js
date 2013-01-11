@@ -1,7 +1,8 @@
 var express = require('express'), 
     posts = require('./routes/posts.js'), 
     path = require('path'),
-    moment = require('moment');
+    moment = require('moment'),
+    marked = require('marked');
 
 var app = express();
 
@@ -12,8 +13,8 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-  app.locals.fromNow = function( d ) { return moment(d).fromNow() };
-  //todo add marked() so that we do not have to manipulate post.content
+  app.locals.fromNow = function( d ) { return moment(d).fromNow(); };
+  app.locals.marked = function( md ) { return marked(md); };
 });
 
 app.get('/', posts.index);
