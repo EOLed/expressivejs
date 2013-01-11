@@ -4,9 +4,12 @@ html
     title Expressif Blog Engine
     link(rel='stylesheet', href='/css/bootstrap.min.css', type='text/css')
     link(rel='stylesheet', href='/css/bootstrap-responsive.min.css', type='text/css')
+    link(rel='stylesheet', href='/css/styles.min.css', type='text/css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Raleway:100', type='text/css')
     block css
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     block scripts
   body
+    include includes/header
     block content
     include includes/footer

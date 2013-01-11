@@ -1,4 +1,7 @@
-var express = require('express'), posts = require('./routes/posts.js'), path = require('path');
+var express = require('express'), 
+    posts = require('./routes/posts.js'), 
+    path = require('path');
+
 var app = express();
 
 app.configure(function() {
