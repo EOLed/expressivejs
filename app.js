@@ -2,7 +2,8 @@ var express = require('express'),
     posts = require('./routes/posts.js'), 
     path = require('path'),
     moment = require('moment'),
-    marked = require('marked');
+    marked = require('marked'),
+    preload = require('./config/preload.js');
 
 var app = express();
 
@@ -15,6 +16,8 @@ app.configure(function() {
   app.use(express.static(path.join(__dirname, 'public')));
   app.locals.fromNow = function( d ) { return moment(d).fromNow(); };
   app.locals.marked = function( md ) { return marked(md); };
+
+  preload.preload();
 });
 
 app.get('/', posts.index);

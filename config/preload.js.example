@@ -1,0 +1,45 @@
+var preloadId = 'YOUR PRELOAD ID';
+
+/** all the data you want to preload. */
+function preload() {
+  console.log('start preloading...');
+}
+
+var mongo = require('mongodb'), slugs = require('slugs');
+var Server = mongo.Server,
+    Db = mongo.Db,
+    Bson = mongo.BSONPure;
+
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+
+db = new Db('expressivedb', server, { w: 1});
+
+db.open(function(err, db) {
+  if (!err) {
+    console.log("Connected to 'expressive' database");
+    db.collection('posts', {safe: true}, function(err, collection) {
+      if (err) {
+        console.log("The 'posts' collection doesn't exist. Initializing collection...");
+      }
+    });
+  } else {
+    console.log("error: " + err);
+  }
+});
+
+
+exports.preload = function() {
+  db.collection('preloadrequests', function(err, collection) {
+    collection.findOne({'id': preloadId}, function(err, item) {
+      if (err) {
+      } else {
+        if (item == null) {
+          console.log('preloading...');
+          preload();
+        } else {
+          console.log('preload request [' + preloadId + '] already processed.');
+        }
+      }
+    });
+  });
+}
