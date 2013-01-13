@@ -3,7 +3,7 @@ var express = require('express'),
     path = require('path'),
     moment = require('moment'),
     marked = require('marked'),
-    preload = require('./config/preload.js');
+    preload = require('./preload/preload.js');
 
 var app = express();
 
