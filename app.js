@@ -14,8 +14,9 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-  app.locals.fromNow = function( d ) { return moment(d).fromNow(); };
-  app.locals.marked = function( md ) { return marked(md); };
+  app.locals.fromNow = function(d) { return moment(d).fromNow(); };
+  app.locals.url = function(post) { return '/' + moment(post.created).format('YYYY/MM/DD') + '/' + post.slug; };
+  app.locals.marked = function(md) { return marked(md); };
 
   preload.preload();
 });

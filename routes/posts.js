@@ -1,4 +1,4 @@
-var mongo = require('mongodb'), slugs = require('slugs');
+var mongo = require('mongodb'), slugs = require('slugs'), moment = require('moment');
 var Server = mongo.Server,
     Db = mongo.Db,
     Bson = mongo.BSONPure;
@@ -20,6 +20,11 @@ db.open(function(err, db) {
 });
 
 exports.index = function(req, res) {
+  db.collection('posts', function(err, collection) {
+    collection.find().toArray(function(err, items) {
+      res.render('posts/index', {posts: items});
+    });
+  });
 };
 
 exports.view = function(req, res) {

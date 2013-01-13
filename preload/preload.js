@@ -75,15 +75,41 @@ function preloadUsers() {
 function preloadPosts() {
   var title = 'The Raspberry Pi Mini-Computer Has Sold More Than 1 Million Units';
   var rpi = {title: title,
-             content: fs.readFileSync('./preload/posts/rpi.md'),
+             content: fs.readFileSync('./preload/posts/rpi.md', 'utf8'),
              created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
              slug: slugs(title)};
+
+  title = "New cover of Orwell's '1984' blacks out 'George Orwell' and '1984'";
+  var nineteenEightyFour = {title: title,
+                            content: fs.readFileSync('./preload/posts/1984.md', 'utf8'),
+                            created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                            slug: slugs(title)};
+
+  title = 'Reasons to be Excited';
+  var excited = {title: title,
+                content: fs.readFileSync('./preload/posts/excited.md', 'utf8'),
+                created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                slug: slugs(title)};
 
   console.log('populate default users');
   db.collection('posts', function(err, collection) {
     console.log('clearing posts collection...');
     collection.remove({}, function(err, results) {
       if (!err) {
+        collection.insert(nineteenEightyFour, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(excited, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
         collection.insert(rpi, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
