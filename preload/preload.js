@@ -77,18 +77,21 @@ function preloadPosts() {
   var rpi = {title: title,
              content: fs.readFileSync('./preload/posts/rpi.md', 'utf8'),
              created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+             tags: ['tech', 'raspberrypi'],
              slug: slugs(title)};
 
   title = "New cover of Orwell's '1984' blacks out 'George Orwell' and '1984'";
   var nineteenEightyFour = {title: title,
                             content: fs.readFileSync('./preload/posts/1984.md', 'utf8'),
                             created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                            tags: ['books'],
                             slug: slugs(title)};
 
   title = 'Reasons to be Excited';
   var excited = {title: title,
                 content: fs.readFileSync('./preload/posts/excited.md', 'utf8'),
                 created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                tags: ['tech', 'editorial'],
                 slug: slugs(title)};
 
   console.log('populate default users');
