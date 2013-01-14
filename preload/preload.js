@@ -5,7 +5,6 @@ var Bson = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 var preloadId = 'init';
-var salt = 8;
 
 db = new Db('expressivedb', server, { w: 1});
 
@@ -52,21 +51,23 @@ function preloadUsers() {
     collection.remove({}, function(err, results) {
       if (!err) {
         console.log('hashing password...');
-        bcrypt.hash('password', salt, function(err, hash) {
-          console.log('inserting achan with hash ' + hash + ' to users collection...');
-          collection.insert({username: 'achan',
-                             name: 'Amos Chan',
-                             email: 'amos.chan+express@chapps.org',
-                             joined: new Date(),
-                             password: hash},
-                            function (err, result) {
-            if (err) {
-              console.log('error occurred trying to add achan.');
-            } else {
-              console.log('achan added.');
-            }
-          });
-        }); // end bcrypt
+        bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash('password', salt, function(err, hash) {
+            console.log('inserting achan with hash ' + hash + ' to users collection...');
+            collection.insert({username: 'achan',
+                               name: 'Amos Chan',
+                               email: 'amos.chan+express@chapps.org',
+                               joined: new Date(),
+                               password: hash},
+                              function (err, result) {
+              if (err) {
+                console.log('error occurred trying to add achan.');
+              } else {
+                console.log('achan added.');
+              }
+            });
+          }); // end bcrypt
+        });
       };
     });
   });
