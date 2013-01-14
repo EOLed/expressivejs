@@ -4,6 +4,8 @@ var express = require('express'),
     moment = require('moment'),
     marked = require('marked'),
     preload = require('./preload/preload.js'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
     login = require('./routes/login.js');
 
 var app = express();
@@ -19,8 +21,8 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.session({secret: 'temporarysecret'}));
-  app.use(login.initialize());
-  app.use(login.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
 
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
@@ -30,10 +32,22 @@ app.configure(function() {
   preload.preload();
 });
 
+passport.use(new LocalStrategy(login.localStrategy));
+
+passport.serializeUser(function(user, done) {
+  console.log('serializing user: ' + JSON.stringify(user));
+  done(null, user.username);
+});
+
+passport.deserializeUser(function(username, done) {
+  console.log('deserializing user: ' + username);
+  done(null, {username: username});
+});
+
 app.all('/admin(/*)?', login.requiresLogin);
 
 app.get('/login', function(req, res) { res.render('login'); });
-app.post('/login', login.login);
+app.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), login.login);
 
 app.get('/', posts.index);
 app.get('/:year/:month/:day/:slug', posts.view);
