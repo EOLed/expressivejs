@@ -4,9 +4,7 @@ var express = require('express'),
     moment = require('moment'),
     marked = require('marked'),
     preload = require('./preload/preload.js'),
-    bcrypt = require('bcrypt'),
-    passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    login = require('./routes/login.js');
 
 var app = express();
 
@@ -21,8 +19,8 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.session({secret: 'temporarysecret'}));
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(login.initialize());
+  app.use(login.session());
   app.use(app.router);
 
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
@@ -32,51 +30,10 @@ app.configure(function() {
   preload.preload();
 });
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    console.log('local strategy login...');
-
-    db.collection('users', function(err, collection) {
-      collection.findOne({username: username}, function(err, user) {
-        if (err) {
-          console.log('error occured while querying for user: ' + username);
-          return done(null, false);
-        } else {
-          console.log('user found: ' + username + ' now comparing pw.');
-          bcrypt.compare(password, user.password, function(err, res) {
-            if (err) {
-              console.log('couldn\'t login: bcrypt hashing error.');
-              return done(err);
-            }
-
-            if (!res) {
-              console.log('incorrect password...');
-              return done(null, false);
-            }
-
-            console.log('password matches!');
-            return done(null, user);
-          });
-        }
-      });
-    });
-  }
-));
-
-passport.serializeUser(function(user, done) {
-  done(null, user.username);
-});
-
-passport.deserializeUser(function(username, done) {
-  done(null, {username: username});
-});
-
-app.all('/admin(/*)?', function(req, res, next) { res.redirect('/login'); });
+app.all('/admin(/*)?', login.requiresLogin);
 
 app.get('/login', function(req, res) { res.render('login'); });
-app.post('/login',
-         passport.authenticate('local', {failureRedirect: '/login'}),
-         function(req, res) { res.redirect('/'); });
+app.post('/login', login.login);
 
 app.get('/', posts.index);
 app.get('/:year/:month/:day/:slug', posts.view);
