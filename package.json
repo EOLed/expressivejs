@@ -1,6 +1,6 @@
 {
-  "name": "fps-bounty",
-  "description": "FPS Bounty API",
+  "name": "expressive",
+  "description": "An ExpressJS + Mongo DB blogging engine.",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
