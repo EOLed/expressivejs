@@ -63,3 +63,34 @@ exports.newPost = function(req, res) {
 
   res.render('posts/add');
 };
+
+exports.tags = function(req, res) {
+  console.log('listing all tags');
+  db.collection('posts', function(err, collection) {
+    var postsByTag = {};
+    collection.find().toArray(function(err, posts) {
+      posts.forEach(function(post) {
+        post.tags.forEach(function(tag) {
+          if (!postsByTag[tag])
+            postsByTag[tag] = new Array();
+
+          console.log('adding post: ' + post.title + ' to tag: ' + tag);
+          postsByTag[tag].push(post);
+        });
+      });
+
+      var tags = new Array();
+      for (var tag in postsByTag) {
+        tags.push(tag);
+      }
+
+      var sortedPosts = {};
+      tags.sort();
+      tags.forEach(function(tag) {
+        sortedPosts[tag] = postsByTag[tag];
+      });
+
+      res.render('posts/tags', {postsByTag: sortedPosts});
+    });
+  });
+}

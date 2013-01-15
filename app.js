@@ -54,5 +54,7 @@ app.get('/:year/:month/:day/:slug', posts.view);
 app.get('/admin/posts/add', posts.add);
 app.post('/admin/posts/add', posts.newPost);
 
+app.get('/tags', posts.tags);
+
 app.listen(3000);
 console.log('expressive listening on port 3000...');
