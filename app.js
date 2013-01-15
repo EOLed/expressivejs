@@ -6,7 +6,8 @@ var express = require('express'),
     preload = require('./preload/preload.js'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    login = require('./routes/login.js');
+    login = require('./routes/login.js'),
+    github = require('./routes/github.js');
 
 var app = express();
 
@@ -55,6 +56,7 @@ app.get('/admin/posts/add', posts.add);
 app.post('/admin/posts/add', posts.newPost);
 
 app.get('/tags', posts.tags);
+app.get('/commits', github.publicActivity);
 
 app.listen(3000);
 console.log('expressive listening on port 3000...');

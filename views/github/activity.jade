@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .span8
+        h1 Latest Coding Activity
+        ul#codeActivity
+          for activity in activities
+            if activity.type == 'PushEvent'
+              for commit in activity.payload.commits
+                li commit
+                  ul.commit
+                    li commit message: #{commit.message}
+                    li sha #{commit.sha}
+                    li date #{activity.created_at}
+                    li url #{commit.url}
+            else if activity.type == 'ForkEvent'
+              li fork
+                ul.fork
+                  li repo name #{activity.repo.name}
+                  li url #{activity.payload.forkee.html_url}
+                  li desc #{activity.payload.forkee.description}
+                  li date #{activity.payload.forkee.created_at}
+            else if (activity.type == 'CreateEvent')
+              li fork
+                ul.create
+                  li  repo name #{activity.repo.name}
+                  li  desc #{activity.payload.description}
+                  li  date #{activity.created_at}
