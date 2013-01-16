@@ -13,6 +13,7 @@
     "bcrypt": "0.7.x",
     "passport": "0.1.x",
     "passport-local": "0.1.x",
-    "request": "2.12.x"
+    "request": "2.12.x",
+    "redis": "0.8.x"
   }
 }

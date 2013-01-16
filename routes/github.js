@@ -1,10 +1,16 @@
-var request = require('request');
+var request = require('request'), redis = require('redis');
 
 exports.publicActivity = function(req, res) {
-  request('https://api.github.com/users/achan/events/public', function(error, response, body) {
-      console.log(JSON.stringify(body));
-      if (!error && response.statusCode == 200) {
-        res.render('github/activity', {activities: JSON.parse(body)});
-      }
+  var redisClient = redis.createClient();
+  
+  redisClient.on('connect', function() {
+    redisClient.get('github:commits', function(err, reply) {
+      redisClient.quit();
+      res.render('github/activity', {activities: JSON.parse(reply)});
+    });
+  });
+  
+  redisClient.on('error', function(err) {
+    res.render(res, {activities: []});
   });
 }

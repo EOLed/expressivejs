@@ -7,7 +7,8 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     login = require('./routes/login.js'),
-    github = require('./routes/github.js');
+    github = require('./routes/github.js'),
+    request = require('request');
 
 var app = express();
 
@@ -58,5 +59,25 @@ app.post('/admin/posts/add', posts.newPost);
 app.get('/tags', posts.tags);
 app.get('/commits', github.publicActivity);
 
-app.listen(3000);
-console.log('expressive listening on port 3000...');
+app.listen(3000, function(){
+  console.log("Express server listening on port " + app.get('port'));
+  setInterval(function() {
+    var url = 'https://api.github.com/users/achan/events/public';
+    request(url, function (error, response, body) {
+      var redis = require('redis');
+      var redisClient = redis.createClient();
+
+      redisClient.on('connect', function() {
+        redisClient.set('github:commits', body, redis.print);
+        redisClient.quit(function(err, res) {
+          console.log('closing redis client.');
+        });
+      });
+
+      redisClient.on('error', function (err) {
+        console.error('Error occurred trying to retrieve tweets: ' + err);
+      });
+    });
+  }, 30000);
+});
+
