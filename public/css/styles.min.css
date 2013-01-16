@@ -34,6 +34,37 @@ footer {
   margin-top: 20px;
 }
 
+.activity-created-at {
+  color: #ccc;
+}
+
+.activity-description {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.commit-message {
+  margin-left: 5px;
+}
+
+ul#codeActivity, ul#codeActivity ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#codeActivity ul li {
+  margin-bottom: 5px;
+}
+
+.activity-item {
+  margin-bottom: 10px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #eee;
+  padding-bottom: 10px;
+}
+
 @media (max-width: 480px) {
   body {
     padding-top: 0;

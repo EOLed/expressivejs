@@ -4,27 +4,38 @@ block content
   .container
     .row
       .span8
-        h1 Latest Coding Activity
+        h1 My Commit Stream
         ul#codeActivity
           for activity in activities
             if activity.type == 'PushEvent'
-              for commit in activity.payload.commits
-                li commit
-                  ul.commit
-                    li commit message: #{commit.message}
-                    li sha #{commit.sha}
-                    li date #{activity.created_at}
-                    li url #{commit.url}
-            else if activity.type == 'ForkEvent'
-              li fork
-                ul.fork
-                  li repo name #{activity.repo.name}
-                  li url #{activity.payload.forkee.html_url}
-                  li desc #{activity.payload.forkee.description}
-                  li date #{activity.payload.forkee.created_at}
-            else if (activity.type == 'CreateEvent')
-              li fork
-                ul.create
-                  li  repo name #{activity.repo.name}
-                  li  desc #{activity.payload.description}
-                  li  date #{activity.created_at}
+              li.activity-item
+                .activity-created-at #{fromNow(activity.created_at)}
+                .activity-description 
+                  a(href='http://github.com/'+activity.actor.login) #{activity.actor.login} 
+                  span pushed to 
+                  a(href='http://github.com/'+activity.repo.name) #{activity.repo.name}
+                ul.commits
+                  for commit in activity.payload.commits
+                    li.commit
+                      span(id='commit'+commit.sha)
+                        code
+                          a(href='http://github.com/'+activity.repo.name+'/commit/'+commit.sha) #{commit.sha.substr(0,7)}
+                        - var newlineIndex = commit.message.indexOf('\n');
+                        span.commit-message #{commit.message.substr(0, newlineIndex > 0 ? newlineIndex : commit.message.length)}
+
+            //- implement later
+              else if activity.type == 'ForkEvent'
+                .activity-created-at #{activity.created_at}
+                li fork
+                  ul.fork
+                    li repo name #{activity.repo.name}
+                    li url #{activity.payload.forkee.html_url}
+                    li desc #{activity.payload.forkee.description}
+                    li date #{activity.payload.forkee.created_at}
+              else if activity.type == 'CreateEvent'
+                .activity-created-at #{activity.created_at}
+                li create
+                  ul.create
+                    li  repo name #{activity.repo.name}
+                    li  desc #{activity.payload.description}
+                    li  date #{activity.created_at}
