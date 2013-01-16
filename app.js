@@ -57,6 +57,7 @@ app.get('/admin/posts/add', posts.add);
 app.post('/admin/posts/add', posts.newPost);
 
 app.get('/tags', posts.tags);
+app.get('/about', posts.about);
 app.get('/commits', github.publicActivity);
 
 app.listen(3000, function(){

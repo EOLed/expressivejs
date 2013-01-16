@@ -95,6 +95,13 @@ function preloadPosts() {
                 tags: ['tech', 'editorial'],
                 slug: slugs(title)};
 
+  title = 'Amos Chan, Software Developer';
+  var about = {title: title,
+                content: fs.readFileSync('./preload/posts/about.md', 'utf8'),
+                created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                tags: ['about'],
+                slug: 'about'};
+
   console.log('populate default users');
   db.collection('posts', function(err, collection) {
     console.log('clearing posts collection...');
@@ -115,6 +122,13 @@ function preloadPosts() {
           }
         });
         collection.insert(rpi, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(about, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {

@@ -42,6 +42,15 @@ exports.view = function(req, res) {
   });
 };
 
+exports.about = function(req, res) {
+  db.collection('posts', function(err, collection) {
+    collection.findOne({slug: 'about', tags: ['about']}, function(err, item) {
+      console.log('post found: ' + JSON.stringify(item));
+      res.render('posts/view', {post: item});
+    });
+  });
+}
+
 exports.add = function(req, res) {
   res.render('posts/add');
 };
