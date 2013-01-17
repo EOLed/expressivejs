@@ -64,21 +64,21 @@ app.listen(3000, function(){
   console.log("Express server listening on port " + app.get('port'));
   setInterval(function() {
     var url = 'https://api.github.com/users/achan/events/public';
-    request(url, function (error, response, body) {
       var redis = require('redis');
       var redisClient = redis.createClient();
 
       redisClient.on('connect', function() {
-        redisClient.set('github:commits', body, redis.print);
-        redisClient.quit(function(err, res) {
-          console.log('closing redis client.');
+        request(url, function (error, response, body) {
+          redisClient.set('github:commits', body, redis.print);
+          redisClient.quit(function(err, res) {
+            console.log('closing redis client.');
+          });
         });
       });
 
       redisClient.on('error', function (err) {
-        console.error('Error occurred trying to retrieve tweets: ' + err);
+        console.error('Error occurred trying to retrieve github activity: ' + err);
       });
-    });
   }, 30000);
 });
 

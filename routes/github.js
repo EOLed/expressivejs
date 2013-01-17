@@ -11,6 +11,7 @@ exports.publicActivity = function(req, res) {
   });
   
   redisClient.on('error', function(err) {
-    res.render(res, {activities: []});
+    redisClient.quit();
+    res.render('github/activity', {activities: []});
   });
 }
