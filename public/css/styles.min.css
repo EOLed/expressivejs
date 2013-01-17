@@ -26,8 +26,25 @@ footer {
   text-align: center;
 }
 
+h1, h2, h3 {
+  font-family: 'Rambla', 'Fjalla One', sans-serif;
+}
+
+a {
+  color: #d44;
+}
+
+a:hover {
+  color: #b10;
+}
+
+code {
+  color: #841;
+}
+
 .post-meta {
   font-size: 11px;
+  color: #ccc;
 }
 
 .post-content {
@@ -63,6 +80,61 @@ ul#codeActivity ul li {
   border-bottom-width: 1px;
   border-bottom-color: #eee;
   padding-bottom: 10px;
+}
+
+.permalink {
+  text-decoration: none;
+}
+
+h2.post-title {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.post-content h2 {
+  padding-top: 10px;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.post-content h3 {
+  padding-top: 10px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.post-footer {
+  text-align: center;
+  margin: 60px;
+  color: #eee;
+  font-size: 24px;
+}
+
+ul#tagList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  font-family: 'Rambla', sans-serif;
+  text-transform: uppercase;
+}
+
+ul#tagList li ul {
+  padding: 0;
+  margin: 0;
+}
+
+
+ul#tagList li ul li {
+  font-family: sans-serif;
+  text-transform: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul#tagList .created {
+  color: #ccc;
+  font-size: smaller;
 }
 
 @media (max-width: 480px) {

@@ -21,7 +21,7 @@ db.open(function(err, db) {
 
 exports.index = function(req, res) {
   db.collection('posts', function(err, collection) {
-    collection.find().toArray(function(err, items) {
+    collection.find({type: 'post'}).sort({created: -1}).toArray(function(err, items) {
       res.render('posts/index', {posts: items});
     });
   });
@@ -44,8 +44,8 @@ exports.view = function(req, res) {
 
 exports.about = function(req, res) {
   db.collection('posts', function(err, collection) {
-    collection.findOne({slug: 'about', tags: ['about']}, function(err, item) {
-      console.log('post found: ' + JSON.stringify(item));
+    collection.findOne({slug: 'about', type: 'page'}, function(err, item) {
+      console.log('page found: ' + JSON.stringify(item));
       res.render('posts/view', {post: item});
     });
   });
@@ -77,7 +77,7 @@ exports.tags = function(req, res) {
   console.log('listing all tags');
   db.collection('posts', function(err, collection) {
     var postsByTag = {};
-    collection.find().toArray(function(err, posts) {
+    collection.find({type: 'post'}).toArray(function(err, posts) {
       posts.forEach(function(post) {
         post.tags.forEach(function(tag) {
           if (!postsByTag[tag])

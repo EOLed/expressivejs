@@ -9,6 +9,7 @@ The FlyLoaderComponent will import and load Helpers, Components and Behaviors on
 The FlyLoaderComponent consists of the following functions:
 
 **`load($type, $name)`**
+
 The `load()` function will import and initialize your Helper/Component/Behavior accordingly.
 
 `$type` is the type of object you wish to load, as expected by the `$type` value in `App::import()`. The values currently supported are “Component”, “Helper” and “Behavior”.
@@ -34,6 +35,7 @@ For example, if you wanted to load my [BibleComponent/BibleHelper](http://www.am
     }
 
 **`unload($type, $name)`**
+
 The `unload()` function will unload your Helper/Component/Behavior accordingly. Currently, it will only unload Behaviors… Any other `$type` will simply do nothing. But the placeholders are there in the event that we find reasoning to unload a Helper/Component.
 
 `$type` is the type of object you wish to unload. The values supported are “Component”, “Helper” and “Behavior”.

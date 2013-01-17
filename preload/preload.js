@@ -76,52 +76,59 @@ function preloadUsers() {
 function preloadPosts() {
   var title = 'Starting a Church Site';
   var starting = {title: title,
-             content: fs.readFileSync('./preload/posts/starting-a-church-site.md', 'utf8'),
-             created: new Date(2010, 9, 27, 12, 54, 24),
-             tags: ['cakephp', 'drupal', 'mcac', 'wordpress'],
-             slug: slugs(title)};
+                  content: fs.readFileSync('./preload/posts/starting-a-church-site.md', 'utf8'),
+                  created: new Date(2010, 9, 27, 12, 54, 24),
+                  tags: ['cakephp', 'drupal', 'mcac', 'wordpress'],
+                  type: 'post',
+                  slug: slugs(title)};
 
   title = 'What\'s Next for Montreal-CAC.org?';
   var next = {title: title,
-             content: fs.readFileSync('./preload/posts/whats-next-for-mcac.md', 'utf8'),
-             created: new Date(2010, 9, 27, 22, 13, 5),
-             tags: ['churchie', 'mcac'],
-             slug: slugs(title)};
+              content: fs.readFileSync('./preload/posts/whats-next-for-mcac.md', 'utf8'),
+              created: new Date(2010, 9, 27, 22, 13, 5),
+              tags: ['churchie', 'mcac'],
+              type: 'post',
+              slug: slugs(title)};
 
   title = 'Amos Chan, Software Developer';
   var about = {title: title,
-                content: fs.readFileSync('./preload/posts/about.md', 'utf8'),
-                created: new Date(2013, 0, 16, 10, 21, 2),
-                tags: ['about'],
-                slug: 'about'};
+               content: fs.readFileSync('./preload/posts/about.md', 'utf8'),
+               created: new Date(2013, 0, 16, 10, 21, 2),
+               tags: ['about'],
+               type: 'page',
+               slug: 'about'};
 
   title = 'Cuploadify: The CakePHP plugin for Uploadify';
   var cuploadify = {title: title,
-                content: fs.readFileSync('./preload/posts/cuploadify.md', 'utf8'),
-                created: new Date(2011, 0, 6, 10, 13, 3),
-                tags: ['cuploadify', 'cakephp'],
-                slug: 'using-uploadify-in-cakephp'};
+                    content: fs.readFileSync('./preload/posts/cuploadify.md', 'utf8'),
+                    created: new Date(2011, 0, 6, 10, 13, 3),
+                    tags: ['cuploadify', 'cakephp'],
+                    type: 'post',
+                    slug: 'using-uploadify-in-cakephp'};
 
   title = '[ALPHA] Retrieve Bible passages with the Bible plugin for CakePHP (ESV)';
   var bible = {title: title,
-                content: fs.readFileSync('./preload/posts/esv.md', 'utf8'),
-                created: new Date(2011, 2, 6, 13, 58, 34),
-                tags: ['bible', 'cakephp'],
-                slug: slugs(title)};
+               content: fs.readFileSync('./preload/posts/esv.md', 'utf8'),
+               created: new Date(2011, 2, 6, 13, 58, 34),
+               tags: ['bible', 'cakephp'],
+               type: 'post',
+               slug: slugs(title)};
 
   title = 'Loading CakePHP Helpers, Components and Behaviors on the fly';
   var fly = {title: title,
-                content: fs.readFileSync('./preload/posts/fly.md', 'utf8'),
-                created: new Date(2011, 3, 8, 12, 44, 25),
-                tags: ['cakephp'],
-                slug: slugs(title)};
+             content: fs.readFileSync('./preload/posts/fly.md', 'utf8'),
+             created: new Date(2011, 3, 8, 12, 44, 25),
+             tags: ['cakephp'],
+             type: 'post',
+             slug: slugs(title)};
 
   title = 'DidGomezScore: PHP vs Node.js Page Load Comparisons';
   var dgs = {title: title,
-                content: fs.readFileSync('./preload/posts/dgs.md', 'utf8'),
-                created: new Date(2012, 8, 5, 14, 22, 33),
-                tags: ['nodejs', 'php'],
-                slug: slugs(title)};
+             content: fs.readFileSync('./preload/posts/dgs.md', 'utf8'),
+             created: new Date(2012, 8, 5, 14, 22, 33),
+             tags: ['nodejs', 'php'],
+             type: 'post',
+             slug: slugs(title)};
 
   console.log('populate default users');
   db.collection('posts', function(err, collection) {

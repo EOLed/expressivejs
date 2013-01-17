@@ -24,12 +24,15 @@ An Uploadify file input box can be inserted into your view like so:
 ### Options for the Uploadify element
 
 **`plugin*`**
+
 The value here must be specified as "cuploadify" in order to let CakePHP know that the element resides in the cuploadify plugin.
 
 **`dom_id*`**
+
 The DOM id of the Uploadify file uploader element.
 
 **`session_id`**
+
 As described in Uploadify’s [FAQ](http://uploadify.com/faqs/how-do-i-send-the-session-id-to-the-back-end-script), “Since the Flash file is what is communicating with your back-end script, the session information is not sent when a file is being uploaded.” If you want to give the back-end script the current session, you can either pass the "`session_id`" key through the `scriptData` option, or by specifying the session id through this parameter.
 
 If you’re using the `cuploadify` component in your controller, the switching of the sessions will be taken care of for you. Otherwise, you will need to manually switch the session before it has been started (ie. in your controller’s beforeFilter() method) like so:
@@ -41,6 +44,7 @@ If you’re using the `cuploadify` component in your controller, the switching o
     }
 
 **`include_scripts`**
+
 In order to avoid including the same scripts multiple times — in the event that you have multiple uploadify inputs within the same page or are already including jquery/swfobject scripts — you can use this array to specify which scripts you wish to include when printing this element.
 Possible values: `"jquery"`, `"swfobject"`, `"uploadify"`, `"uploadify_css"`.
 _As of v0.1.6, all of these values can be overloaded as keys, whose value will specify a custom path to its corresponding script._
@@ -50,6 +54,7 @@ Example:
     array("jquery" => "/path/to/jquery", "swfobject", "uploadify");
 
 **`options`**
+
 This associative array allows you to specify all the jquery options expected by Uploadify.
 Possible values: View the [Uploadify documentation](http://uploadify.com/documentation#options) to see all the possible keys and their expected values.
 Mandatory option(s): `script`
@@ -57,7 +62,7 @@ Default option(s): The `cancelImg` and `uploader` options will use the files pro
 
 To my knowledge, all paths/urls can use the CakePHP routing URLs.
 
-* _denotes mandatory options._
+\* _denotes mandatory options._
 
 ## The Cuploadify Component
 
@@ -77,6 +82,7 @@ To use this plugin with your `uploadify` element, you will need to call the this
 ### The Cuploadify component methods
 
 **`upload($options = array($key=>$value,...))`**
+
 This method can be used to upload the files specified by the Uploadify input box (to the destination specified by the input box).
 Options: The only option currently available is `"root"`, which allows the developer to specify a root directory to prepend to the upload directory specified by the `"folder"` key of the corresponding Uploadify input box. This gives a sort of sandbox effect to avoid certain XSS exploits.
 

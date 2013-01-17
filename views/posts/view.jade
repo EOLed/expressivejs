@@ -1,14 +1,4 @@
 extends ../layout
 
 block content
-  .container.post
-    .row
-      .span8
-        h1.post-title #{post.title}
-        .post-meta
-          | #{fromNow(post.created)} 
-          for tag in post.tags
-            | ##{tag} 
-            
-
-        .post-content !{marked(post.content)}
+  include singlepost

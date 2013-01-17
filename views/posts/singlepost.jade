@@ -1,0 +1,18 @@
+.container
+  .row
+    .span8.offset2.post
+      h2.post-title #{post.title} 
+      .post-meta
+        | #{fromNow(post.created)} 
+        | • 
+        i.icon-tags.tags 
+        for tag in post.tags
+          | ##{tag} 
+        | • 
+        a(href=url(post))
+          i.icon-bookmark.permalink
+
+      .post-content !{marked(post.content)}
+
+      .post-footer
+        i.icon-certificate
