@@ -8,7 +8,8 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     login = require('./routes/login.js'),
     github = require('./routes/github.js'),
-    request = require('request');
+    request = require('request'),
+    config = require('./config/config.js');
 
 var app = express();
 
@@ -22,7 +23,7 @@ app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.session({secret: 'temporarysecret'}));
+  app.use(express.session({secret: config.web.sessionSecret}));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
@@ -30,6 +31,7 @@ app.configure(function() {
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
   app.locals.url = function(post) { return '/' + moment(post.created).format('YYYY/MM/DD') + '/' + post.slug; };
   app.locals.marked = function(md) { return marked(md); };
+  app.locals.config = config.site;
 
   preload.preload();
 });
@@ -60,8 +62,8 @@ app.get('/tags', posts.tags);
 app.get('/about', posts.about);
 app.get('/commits', github.publicActivity);
 
-app.listen(3000, function(){
-  console.log("Express server listening on port " + app.get('port'));
+app.listen(config.web.port, function(){
+  console.log("Expressive listening on port " + config.web.port);
   setInterval(function() {
     var url = 'https://api.github.com/users/achan/events/public';
       var redis = require('redis');
@@ -79,6 +81,6 @@ app.listen(3000, function(){
       redisClient.on('error', function (err) {
         console.error('Error occurred trying to retrieve github activity: ' + err);
       });
-  }, 30000);
+  }, 500000);
 });
 

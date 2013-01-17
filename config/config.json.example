@@ -1,0 +1,5 @@
+{
+  "web": { "port": 3000,
+         "githubIntervalInMillis": 100000,
+         "sessionSecret": "testServerSecret" }
+}
