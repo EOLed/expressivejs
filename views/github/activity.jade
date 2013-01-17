@@ -11,8 +11,8 @@ block content
               li.activity-item
                 .activity-created-at #{fromNow(activity.created_at)}
                 .activity-description 
-                  a(href='http://github.com/'+activity.actor.login) #{activity.actor.login} 
-                  span pushed to 
+                  a(href='http://github.com/'+activity.actor.login) #{activity.actor.login}
+                  span  pushed to 
                   a(href='http://github.com/'+activity.repo.name) #{activity.repo.name}
                 ul.commits
                   for commit in activity.payload.commits
