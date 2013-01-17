@@ -74,54 +74,75 @@ function preloadUsers() {
 }
 
 function preloadPosts() {
-  var title = 'The Raspberry Pi Mini-Computer Has Sold More Than 1 Million Units';
-  var rpi = {title: title,
-             content: fs.readFileSync('./preload/posts/rpi.md', 'utf8'),
-             created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
-             tags: ['tech', 'raspberrypi'],
+  var title = 'Starting a Church Site';
+  var starting = {title: title,
+             content: fs.readFileSync('./preload/posts/starting-a-church-site.md', 'utf8'),
+             created: new Date(2010, 9, 27, 12, 54, 24),
+             tags: ['cakephp', 'drupal', 'mcac', 'wordpress'],
              slug: slugs(title)};
 
-  title = "New cover of Orwell's '1984' blacks out 'George Orwell' and '1984'";
-  var nineteenEightyFour = {title: title,
-                            content: fs.readFileSync('./preload/posts/1984.md', 'utf8'),
-                            created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
-                            tags: ['books'],
-                            slug: slugs(title)};
-
-  title = 'Reasons to be Excited';
-  var excited = {title: title,
-                content: fs.readFileSync('./preload/posts/excited.md', 'utf8'),
-                created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
-                tags: ['tech', 'editorial'],
-                slug: slugs(title)};
+  title = 'What\'s Next for Montreal-CAC.org?';
+  var next = {title: title,
+             content: fs.readFileSync('./preload/posts/whats-next-for-mcac.md', 'utf8'),
+             created: new Date(2010, 9, 27, 22, 13, 5),
+             tags: ['churchie', 'mcac'],
+             slug: slugs(title)};
 
   title = 'Amos Chan, Software Developer';
   var about = {title: title,
                 content: fs.readFileSync('./preload/posts/about.md', 'utf8'),
-                created: new Date(new Date().getTime() - parseInt(Math.random() * 365 * 1000000)),
+                created: new Date(2013, 0, 16, 10, 21, 2),
                 tags: ['about'],
                 slug: 'about'};
+
+  title = 'Cuploadify: The CakePHP plugin for Uploadify';
+  var cuploadify = {title: title,
+                content: fs.readFileSync('./preload/posts/cuploadify.md', 'utf8'),
+                created: new Date(2011, 0, 6, 10, 13, 3),
+                tags: ['cuploadify', 'cakephp'],
+                slug: 'using-uploadify-in-cakephp'};
+
+  title = '[ALPHA] Retrieve Bible passages with the Bible plugin for CakePHP (ESV)';
+  var bible = {title: title,
+                content: fs.readFileSync('./preload/posts/esv.md', 'utf8'),
+                created: new Date(2011, 2, 6, 13, 58, 34),
+                tags: ['bible', 'cakephp'],
+                slug: slugs(title)};
+
+  title = 'Loading CakePHP Helpers, Components and Behaviors on the fly';
+  var fly = {title: title,
+                content: fs.readFileSync('./preload/posts/fly.md', 'utf8'),
+                created: new Date(2011, 3, 8, 12, 44, 25),
+                tags: ['cakephp'],
+                slug: slugs(title)};
+
+  title = 'DidGomezScore: PHP vs Node.js Page Load Comparisons';
+  var dgs = {title: title,
+                content: fs.readFileSync('./preload/posts/dgs.md', 'utf8'),
+                created: new Date(2012, 8, 5, 14, 22, 33),
+                tags: ['nodejs', 'php'],
+                slug: slugs(title)};
 
   console.log('populate default users');
   db.collection('posts', function(err, collection) {
     console.log('clearing posts collection...');
     collection.remove({}, function(err, results) {
       if (!err) {
-        collection.insert(nineteenEightyFour, function (err, result) {
+        collection.insert(starting, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
             console.log('post added.');
           }
         });
-        collection.insert(excited, function (err, result) {
+        collection.insert(next, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
             console.log('post added.');
           }
         });
-        collection.insert(rpi, function (err, result) {
+        collection.insert(cuploadify, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
@@ -129,6 +150,27 @@ function preloadPosts() {
           }
         });
         collection.insert(about, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(bible, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(fly, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(dgs, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
