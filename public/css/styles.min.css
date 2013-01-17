@@ -24,6 +24,7 @@ footer {
   font-size: 11px;
   color: #ddd;
   text-align: center;
+  padding-bottom: 40px;
 }
 
 h1, h2, h3 {
@@ -84,6 +85,16 @@ ul#codeActivity ul li {
 
 .permalink {
   text-decoration: none;
+}
+
+.fork-me {
+  font-size: 20px;
+  text-decoration: none;
+  color: #ccc;
+}
+
+.fork-me:hover {
+  color: #bbb;
 }
 
 h2.post-title {
