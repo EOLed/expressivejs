@@ -90,7 +90,7 @@ function preloadPosts() {
               type: 'post',
               slug: slugs(title)};
 
-  title = 'Amos Chan, Software Developer';
+  title = 'Amos Chan, Software Developer.';
   var about = {title: title,
                content: fs.readFileSync('./preload/posts/about.md', 'utf8'),
                created: new Date(2013, 0, 16, 10, 21, 2),
