@@ -1,5 +1,7 @@
 Hi, my name is **Amos Chan**. I'm a software developer specializing in enterprise Java web applications for my 9-5, but by night I like to dive into the wild, dynamically-typed world of programming for [my side projects](http://github.com/achan). 
 
+![via Facebook](http://graph.facebook.com/amoschan/picture?type=large)
+
 ## Social 
  - github - [achan](http://github.com/achan)
  - bitbucket - [achan](http://bitbucket.org/achan)

@@ -98,6 +98,14 @@ ul#codeActivity ul li {
   color: #bbb;
 }
 
+#about img {
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+  padding: 2px;
+}
+
 h2.post-title, h1 {
   font-size: 28px;
   line-height: 32px;
@@ -157,6 +165,14 @@ ul#tagList .created {
 @media (max-width: 480px) {
   body {
     padding-top: 0;
+  }
+  #about img {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    margin: 10px 0;
+    padding: 2px;
+    float: none;
   }
 }
 
