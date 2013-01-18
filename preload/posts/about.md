@@ -6,6 +6,7 @@ Hi, my name is **Amos Chan**. I'm a software developer specializing in enterpris
  - github - [achan](http://github.com/achan)
  - bitbucket - [achan](http://bitbucket.org/achan)
  - twitter - [@amosfreakinchan](http://twitter.com/amosfreakinchan)
+ - [linkedin](http://linkedin.com/in/amoschan)
 
 ## Notable Side Projects
 
