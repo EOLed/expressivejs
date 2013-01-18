@@ -1,9 +1,9 @@
-Hi, my name is **Amos Chan**. I'm a software developer specializing in enterprise Java web applications for my 9-5, but by night I like to dive into the wild, dynamically-typed world of programming for [my personal side projects](http://github.com/achan). 
+Hi, my name is **Amos Chan**. I'm a software developer specializing in enterprise Java web applications for my 9-5, but by night I like to dive into the wild, dynamically-typed world of programming for [my side projects](http://github.com/achan). 
 
 ## Social 
  - github - [achan](http://github.com/achan)
  - bitbucket - [achan](http://bitbucket.org/achan)
- - twitter - [amosfreakinchan](http://twitter.com/amosfreakinchan)
+ - twitter - [@amosfreakinchan](http://twitter.com/amosfreakinchan)
 
 ## Notable Side Projects
 

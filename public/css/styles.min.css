@@ -41,6 +41,7 @@ a:hover {
 
 code {
   color: #841;
+  white-space: normal;
 }
 
 .post-meta {

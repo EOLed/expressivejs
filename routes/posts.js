@@ -38,7 +38,6 @@ exports.view = function(req, res) {
 
   db.collection('posts', function(err, collection) {
     collection.findOne({'slug': req.params.slug, 'created': {'$gte': createDate, '$lte': new Date(year, month - 1, day + 1)}}, function(err, item) {
-      console.log('post found: ' + JSON.stringify(item));
       res.render('posts/view', {post: item});
     });
   });
@@ -47,7 +46,6 @@ exports.view = function(req, res) {
 exports.about = function(req, res) {
   db.collection('posts', function(err, collection) {
     collection.findOne({slug: 'about', type: 'page'}, function(err, item) {
-      console.log('page found: ' + JSON.stringify(item));
       res.render('posts/view', {post: item});
     });
   });
@@ -61,7 +59,6 @@ exports.newPost = function(req, res) {
   var post = req.body.post;
   post.slug = slugs(post.title);
   post.created = new Date();
-  console.log('saving post: ' + JSON.stringify(post));
   db.collection('posts', function(err, collection) {
     collection.insert(post, {safe: true}, function(err, result) {
       if (err) {
@@ -76,10 +73,9 @@ exports.newPost = function(req, res) {
 };
 
 exports.tags = function(req, res) {
-  console.log('listing all tags');
   db.collection('posts', function(err, collection) {
     var postsByTag = {};
-    collection.find({type: 'post'}, ['tags', 'created', 'title']).toArray(function(err, posts) {
+    collection.find({type: 'post'}, ['tags', 'created', 'title', 'slug']).toArray(function(err, posts) {
       posts.forEach(function(post) {
         post.tags.forEach(function(tag) {
           if (!postsByTag[tag])
