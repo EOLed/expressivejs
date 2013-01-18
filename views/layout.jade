@@ -22,3 +22,5 @@ html
     include includes/header
     block content
     include includes/footer
+    - if ( typeof(config.googleAnalytics) !== 'undefined')
+      include includes/ga
