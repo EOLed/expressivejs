@@ -1,7 +1,8 @@
 .container
   .row
     .span8.offset2.post
-      h2.post-title #{post.title} 
+      h2.post-title
+        a(href=url(post)) #{post.title} 
       .post-meta
         | #{fromNow(post.created)} 
         | • 
