@@ -1,11 +1,8 @@
 var mongo = require('mongodb'), slugs = require('slugs'), moment = require('moment');
-var Server = mongo.Server,
-    Db = mongo.Db,
-    Bson = mongo.BSONPure;
+var Server = mongo.Server, Db = mongo.Db, Bson = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('expressivedb', server, { w: 1});
-
+var db = new Db('expressivedb', server, {w: 1});
 db.open(function(err, db) {
   if (!err) {
     console.log("Connected to 'expressive' database");
@@ -19,9 +16,14 @@ db.open(function(err, db) {
   }
 });
 
+exports.config = {};
+
 exports.index = function(req, res) {
   db.collection('posts', function(err, collection) {
-    collection.find({type: 'post'}).sort({created: -1}).toArray(function(err, items) {
+    var cursor = collection.find({type: 'post'});
+    cursor.sort({created: -1});
+    cursor.limit(exports.config.web.numFrontPagePosts);
+    cursor.toArray(function(err, items) {
       res.render('posts/index', {posts: items});
     });
   });

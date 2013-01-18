@@ -35,6 +35,8 @@ app.configure(function() {
     }
   });
 
+  posts.config = config;
+
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
   app.locals.url = function(post) { return '/' + moment(post.created).format('YYYY/MM/DD') + '/' + post.slug; };
   app.locals.marked = function(md) { return marked(md); };
