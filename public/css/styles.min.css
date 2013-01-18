@@ -97,7 +97,7 @@ ul#codeActivity ul li {
   color: #bbb;
 }
 
-h2.post-title {
+h2.post-title, h1 {
   font-size: 28px;
   line-height: 32px;
 }

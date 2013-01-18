@@ -6,12 +6,12 @@ exports.publicActivity = function(req, res) {
   redisClient.on('connect', function() {
     redisClient.get('github:commits', function(err, reply) {
       redisClient.quit();
-      res.render('github/activity', {activities: JSON.parse(reply)});
+      res.render('github/activity', {activities: JSON.parse(reply), title: 'My Commit Stream'});
     });
   });
   
   redisClient.on('error', function(err) {
     redisClient.quit();
-    res.render('github/activity', {activities: []});
+    res.render('github/activity', {activities: [], title: 'My Commit Stream'});
   });
 }

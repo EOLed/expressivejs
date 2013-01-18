@@ -99,7 +99,7 @@ exports.tags = function(req, res) {
         sortedPosts[tag] = postsByTag[tag];
       });
 
-      res.render('posts/tags', {postsByTag: sortedPosts});
+      res.render('posts/tags', {title: 'Tags', postsByTag: sortedPosts});
     });
   });
 }

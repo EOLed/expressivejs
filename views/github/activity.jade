@@ -4,7 +4,8 @@ block content
   .container
     .row
       .span8.offset2
-        h1 My Commit Stream
+        h1.post-title
+          a(href='/commits') My Commit Stream
         ul#codeActivity
           for activity in activities
             if activity.type == 'PushEvent'
