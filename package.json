@@ -14,6 +14,7 @@
     "passport": "0.1.x",
     "passport-local": "0.1.x",
     "request": "2.12.x",
-    "redis": "0.8.x"
+    "redis": "0.8.x",
+    "highlight": "0.2.x"
   }
 }

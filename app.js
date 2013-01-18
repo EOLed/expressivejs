@@ -9,7 +9,8 @@ var express = require('express'),
     login = require('./routes/login.js'),
     github = require('./routes/github.js'),
     request = require('request'),
-    config = require('./config/config.js');
+    config = require('./config/config.js'),
+    hl = require("highlight").Highlight;
 
 var app = express();
 
@@ -27,6 +28,13 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
+
+  marked.setOptions({
+    highlight: function(code, lang) {
+      console.log("highlighting: " + code);
+      return hl(code);
+    }
+  });
 
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
   app.locals.url = function(post) { return '/' + moment(post.created).format('YYYY/MM/DD') + '/' + post.slug; };
