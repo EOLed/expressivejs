@@ -130,6 +130,14 @@ function preloadPosts() {
              type: 'post',
              slug: slugs(title)};
 
+  title = 'Configuration management for Node.js';
+  var configuration = {title: title,
+             content: fs.readFileSync('./preload/posts/configuration.md', 'utf8'),
+             created: new Date(2013, 0, 17, 18, 46, 33),
+             tags: ['nodejs', 'expressjs', 'expressivejs'],
+             type: 'post',
+             slug: slugs(title)};
+
   console.log('populate default users');
   db.collection('posts', function(err, collection) {
     console.log('clearing posts collection...');
@@ -171,6 +179,13 @@ function preloadPosts() {
           }
         });
         collection.insert(fly, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(configuration, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
