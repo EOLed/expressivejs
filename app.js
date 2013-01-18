@@ -31,7 +31,6 @@ app.configure(function() {
 
   marked.setOptions({
     highlight: function(code, lang) {
-      console.log("highlighting: " + code);
       return hl(code);
     }
   });

@@ -77,13 +77,12 @@ exports.tags = function(req, res) {
   console.log('listing all tags');
   db.collection('posts', function(err, collection) {
     var postsByTag = {};
-    collection.find({type: 'post'}).toArray(function(err, posts) {
+    collection.find({type: 'post'}, ['tags', 'created', 'title']).toArray(function(err, posts) {
       posts.forEach(function(post) {
         post.tags.forEach(function(tag) {
           if (!postsByTag[tag])
             postsByTag[tag] = new Array();
 
-          console.log('adding post: ' + post.title + ' to tag: ' + tag);
           postsByTag[tag].push(post);
         });
       });
