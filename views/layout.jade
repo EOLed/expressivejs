@@ -1,7 +1,14 @@
 doctype 5
 html
   head
-    title Expressive Blog Engine
+    title
+      - if (typeof(title) !== 'undefined')
+        | #{title}
+      - else if (typeof(post) !== 'undefined')
+        | #{post.title}
+      - else
+        | #{config.tagLine}
+      |  | #{config.name}
     link(rel='stylesheet', href='/css/bootstrap.min.css', type='text/css')
     link(rel='stylesheet', href='/css/bootstrap-responsive.min.css', type='text/css')
     link(rel='stylesheet', href='/css/font-awesome.min.css', type='text/css')
