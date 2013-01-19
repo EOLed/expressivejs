@@ -74,22 +74,22 @@ app.get('/commits', github.publicActivity);
 app.listen(config.web.port, function(){
   console.log("Expressive listening on port " + config.web.port);
   setInterval(function() {
-    var url = 'https://api.github.com/users/achan/events/public';
-      var redis = require('redis');
-      var redisClient = redis.createClient();
+    var url = config.web.github.url;
+    var redis = require('redis');
+    var redisClient = redis.createClient();
 
-      redisClient.on('connect', function() {
-        request(url, function (error, response, body) {
-          redisClient.set('github:commits', body, redis.print);
-          redisClient.quit(function(err, res) {
-            console.log('closing redis client.');
-          });
+    redisClient.on('connect', function() {
+      request(url, function (error, response, body) {
+        redisClient.set('github:commits', body, redis.print);
+        redisClient.quit(function(err, res) {
+          console.log('closing redis client.');
         });
       });
+    });
 
-      redisClient.on('error', function (err) {
-        console.error('Error occurred trying to retrieve github activity: ' + err);
-      });
-  }, 500000);
+    redisClient.on('error', function (err) {
+      console.error('Error occurred trying to retrieve github activity: ' + err);
+    });
+  }, config.web.github.intervalInMillis);
 });
 

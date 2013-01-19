@@ -1,6 +1,7 @@
 {
   "web": { "port": 3000,
-           "githubIntervalInMillis": 100000,
+           "github": { "url": "https://api.github.com/repos/achan/expressivejs/events",
+                       "intervalInMillis": 100000 },
            "sessionSecret": "testServerSecret",
            "numFrontPagePosts": 5 }
 }
