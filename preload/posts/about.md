@@ -22,4 +22,8 @@ A minimal blogging engine running on ExpressJS. `npm install expressive && expre
 
 Yet another CakePHP CMS engine that provides the notion of users, roles and groups. Users have roles. Certain roles can post to groups. Groups have pages. Anybody can subscribe to groups.
 
+### android-reddit [+](http://github.com/achan/android-reddit)
+
+An Android library wrapping Reddit's [publicly available REST API](http://www.reddit.com/dev/api). This library will parse Reddit's JSON responses into Java objects like `Subreddit`, `Link`, `Comment`, etc. Currently used by the up and coming [Reddit Flow](https://play.google.com/store/apps/details?id=com.deeptrouble.yaarreddit) Android app.
+
 \* soon :)
