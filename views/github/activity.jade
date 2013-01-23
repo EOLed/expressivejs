@@ -7,22 +7,25 @@ block content
         h1.post-title
           a(href='/commits') My Commit Stream
         ul#codeActivity
-          for activity in activities
-            if activity.type == 'PushEvent'
-              li.activity-item
-                .activity-created-at #{fromNow(activity.created_at)}
-                .activity-description 
-                  a(href='http://github.com/'+activity.actor.login) #{activity.actor.login}
-                  span  pushed to 
-                  a(href='http://github.com/'+activity.repo.name) #{activity.repo.name}
-                ul.commits
-                  for commit in activity.payload.commits
-                    li.commit
-                      span(id='commit'+commit.sha)
-                        code
-                          a(href='http://github.com/'+activity.repo.name+'/commit/'+commit.sha) #{commit.sha.substr(0,7)}
-                        - var newlineIndex = commit.message.indexOf('\n');
-                        span.commit-message #{commit.message.substr(0, newlineIndex > 0 ? newlineIndex : commit.message.length)}
+          if activities
+            for activity in activities
+              if activity.type == 'PushEvent'
+                li.activity-item
+                  .activity-created-at #{fromNow(activity.created_at)}
+                  .activity-description 
+                    a(href='http://github.com/'+activity.actor.login) #{activity.actor.login}
+                    span  pushed to 
+                    a(href='http://github.com/'+activity.repo.name) #{activity.repo.name}
+                  ul.commits
+                    for commit in activity.payload.commits
+                      li.commit
+                        span(id='commit'+commit.sha)
+                          code
+                            a(href='http://github.com/'+activity.repo.name+'/commit/'+commit.sha) #{commit.sha.substr(0,7)}
+                          - var newlineIndex = commit.message.indexOf('\n');
+                          span.commit-message #{commit.message.substr(0, newlineIndex > 0 ? newlineIndex : commit.message.length)}
+          else
+            li No activity yet.
 
             //- implement later
               else if activity.type == 'ForkEvent'
