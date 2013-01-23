@@ -43,10 +43,10 @@ exports.view = function(req, res) {
   });
 };
 
-exports.about = function(req, res) {
+exports.viewPage = function(req, res) {
   db.collection('posts', function(err, collection) {
-    collection.findOne({slug: 'about', type: 'page'}, function(err, item) {
-      res.render('posts/about', {post: item});
+    collection.findOne({slug: req.params.slug, type: 'page'}, function(err, item) {
+      res.render('posts/viewPage', {post: item});
     });
   });
 }

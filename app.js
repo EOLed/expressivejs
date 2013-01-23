@@ -38,7 +38,9 @@ app.configure(function() {
   posts.config = config;
 
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
-  app.locals.url = function(post) { return '/' + moment(post.created).format('YYYY/MM/DD') + '/' + post.slug; };
+  app.locals.url = function(post) {
+    return (post.type == 'post' ? '/' + moment(post.created).format('YYYY/MM/DD') : '')  + '/' + post.slug;
+  };
   app.locals.marked = function(md) { return marked(md); };
   app.locals.config = config.site;
 
@@ -68,8 +70,8 @@ app.get('/admin/posts/add', posts.add);
 app.post('/admin/posts/add', posts.newPost);
 
 app.get('/tags', posts.tags);
-app.get('/about', posts.about);
 app.get('/commits', github.publicActivity);
+app.get('/:slug', posts.viewPage);
 
 app.listen(config.web.port, function(){
   console.log("Expressive listening on port " + config.web.port);
