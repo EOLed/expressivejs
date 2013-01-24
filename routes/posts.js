@@ -69,7 +69,7 @@ exports.newPost = function(req, res) {
     });
   });
 
-  res.render('posts/add');
+  res.redirect('/');
 };
 
 exports.tags = function(req, res) {
