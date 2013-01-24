@@ -20,6 +20,10 @@ block content
             label.control-label(for='post[content]') Content
             .controls
               textarea.input-xxlarge(name='post[content]', placeholder='Content', style='height: 300px')
+          .control-group
+            label.control-label(for='post[tags]') Tags
+            .controls
+              input.input-xlarge(type='text', name='post[tags]', placeholder='Tags')
           .form-actions
             input.btn.btn-primary(type='submit') Post 
             button.btn(type='button') Cancel

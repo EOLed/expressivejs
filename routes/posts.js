@@ -59,6 +59,13 @@ exports.newPost = function(req, res) {
   var post = req.body.post;
   post.slug = slugs(post.title);
   post.created = new Date();
+  post.tags = post.tags.split(',');
+  var normalizedTags = [];
+  post.tags.forEach(function(tag) {
+    normalizedTags.push(tag.replace(/\W/g,''));
+  });
+  post.tags = normalizedTags;
+
   db.collection('posts', function(err, collection) {
     collection.insert(post, {safe: true}, function(err, result) {
       if (err) {
