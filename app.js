@@ -61,8 +61,10 @@ passport.deserializeUser(function(username, done) {
 
 app.all('/admin(/*)?', login.requiresLogin);
 
-app.get('/login', function(req, res) { res.render('login'); });
-app.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), login.login);
+app.get('/login', login.login);
+app.post('/login',
+         passport.authenticate('local', { failureRedirect: '/login' }), 
+         function(req, res) { res.redirect(req.get('referrer')); });
 
 app.get('/', posts.index);
 app.get('/:year/:month/:day/:slug', posts.view);
