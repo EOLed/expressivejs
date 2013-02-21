@@ -138,6 +138,14 @@ function preloadPosts() {
              type: 'post',
              slug: slugs(title)};
 
+  title = 'Introducing Snooby: A BlackBerry 10 Reddit Client';
+  var snooby = {title: title,
+             content: fs.readFileSync('./preload/posts/snooby.md', 'utf8'),
+             created: new Date(2013, 1, 20, 10, 03, 53),
+             tags: ['snooby', 'blackberry10'],
+             type: 'post',
+             slug: slugs(title)};
+
   console.log('populate default users');
   db.collection('posts', function(err, collection) {
     console.log('clearing posts collection...');
@@ -186,6 +194,13 @@ function preloadPosts() {
           }
         });
         collection.insert(configuration, function (err, result) {
+          if (err) {
+            console.log('error occurred trying to add post.');
+          } else {
+            console.log('post added.');
+          }
+        });
+        collection.insert(snooby, function (err, result) {
           if (err) {
             console.log('error occurred trying to add post.');
           } else {
