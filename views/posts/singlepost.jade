@@ -5,10 +5,11 @@
         a(href=url(post)) #{post.title} 
       .post-meta
         | #{fromNow(post.created)} 
-        | • 
-        i.icon-tags.tags 
-        for tag in post.tags
-          | ##{tag} 
+        if post.tags
+          | • 
+          i.icon-tags.tags 
+          for tag in post.tags
+            | ##{tag} 
         | • 
         a(href=url(post))
           i.icon-bookmark.permalink

@@ -55,14 +55,16 @@ exports.index = function(req, res) {
 };
 
 exports.login = function(req, res) {
-  console.log('checking for logged user... ' + JSON.stringify(req.user));
-  res.redirect('/');
+  res.render('login');
 }
 
 exports.requiresLogin = function(req, res, next) {
   console.log('checking for logged user... ' + JSON.stringify(req.user));
-  if (!req.user)
-    res.redirect('/login');
-
-  next();
+  if (!req.user) {
+    console.log('rendering login page instead.');
+    res.render('login');
+  } else { 
+    console.log('logged user found. continuing chain...');
+    next();
+  }
 }

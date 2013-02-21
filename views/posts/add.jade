@@ -5,15 +5,25 @@ block content
     .row
       .span12
         h1 Add a blog post
-        form.form-horizontal(method='post', action='/posts/add', name='postForm')
+        form.form-horizontal(method='post', action='/admin/posts/add', name='postForm')
           .control-group
-            label.control-label(for='postTitle') Title
+            label.control-label(for='post[title]') Title
             .controls
               input.input-xlarge(type='text', name='post[title]', placeholder='Title')
           .control-group
-            label.control-label(for='postContent') Content
+            label.control-label(for='post[type]') Type
+            .controls
+              select(name='post[type]')
+                option(value='post') Post
+                option(value='page') Page
+          .control-group
+            label.control-label(for='post[content]') Content
             .controls
               textarea.input-xxlarge(name='post[content]', placeholder='Content', style='height: 300px')
+          .control-group
+            label.control-label(for='post[tags]') Tags
+            .controls
+              input.input-xlarge(type='text', name='post[tags]', placeholder='Tags')
           .form-actions
             input.btn.btn-primary(type='submit') Post 
             button.btn(type='button') Cancel
