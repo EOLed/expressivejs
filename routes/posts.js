@@ -82,7 +82,7 @@ exports.newPost = function(req, res) {
 exports.tags = function(req, res) {
   db.collection('posts', function(err, collection) {
     var postsByTag = {};
-    collection.find({type: 'post'}, ['tags', 'created', 'title', 'slug']).toArray(function(err, posts) {
+    collection.find({type: 'post'}, ['type', 'tags', 'created', 'title', 'slug']).toArray(function(err, posts) {
       posts.forEach(function(post) {
         post.tags.forEach(function(tag) {
           if (!postsByTag[tag])

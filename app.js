@@ -39,7 +39,7 @@ app.configure(function() {
 
   app.locals.fromNow = function(d) { return moment(d).fromNow(); };
   app.locals.url = function(post) {
-    return (post.type == 'post' ? '/' + moment(post.created).format('YYYY/MM/DD') : '')  + '/' + post.slug;
+    return (post.type === 'post' ? '/' + moment(post.created).format('YYYY/MM/DD') : '')  + '/' + post.slug;
   };
   app.locals.marked = function(md) { return marked(md); };
   app.locals.config = config.site;
