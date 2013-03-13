@@ -57,7 +57,10 @@ exports.add = function(req, res) {
 
 exports.newPost = function(req, res) {
   var post = req.body.post;
-  post.slug = slugs(post.title);
+
+  if (typeof post.slug === 'undefined' || post.slug === '')
+    post.slug = slugs(post.title);
+
   post.created = new Date();
   post.tags = post.tags.split(',');
   var normalizedTags = [];
