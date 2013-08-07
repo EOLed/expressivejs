@@ -2,6 +2,10 @@ doctype 5
 html
   head
     title= title
+    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    include header
     block content
+    include footer

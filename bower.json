@@ -1,0 +1,8 @@
+{
+  "name": "expressivejs",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "~3.x",
+    "font-awesome": "~3.x"
+  }
+}

@@ -13,5 +13,7 @@ results
 
 npm-debug.log
 node_modules/
+public/bower_components/
+public/styles/*.css
 
 config/*
