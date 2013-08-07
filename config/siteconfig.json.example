@@ -1,7 +1,0 @@
-{
-  "name": "expressive",
-  "tagLine": "The ExpressJS Blogging Engine",
-  "footer": "expressivejs: the expressjs blogging engine"
-  "googleAnalyticsId": { "account": "your-account-id",
-                         "domainName": "your-registered-domain-name" }
-}
